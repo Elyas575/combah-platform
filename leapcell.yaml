@@ -1,0 +1,10 @@
+# Leapcell deploy config for combah-platform (FastAPI + SQLite demo)
+# Build: pip install -r requirements.txt
+# Start: uvicorn app:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips *
+# Health check: /api/health
+# Env required in Leapcell dashboard:
+#   COMBAH_DEMO=1
+#   COMBAH_SECURE_COOKIES=0
+#   COMBAH_DATA_DIR=/tmp/combah_data
+#   PYTHON_VERSION=3.12.0
+# Port: Leapcell injects $PORT automatically - do NOT hardcode 8000/7860
