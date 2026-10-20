@@ -1,8 +1,10 @@
+# For Hugging Face Spaces Docker deploy - copy this file to `Dockerfile` in your Space repo
 FROM python:3.12-slim
-ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 COMBAH_DATA_DIR=/tmp/combah_data COMBAH_DEMO=1 COMBAH_SECURE_COOKIES=0 PORT=7860
-WORKDIR /app
-COPY requirements.txt /app/requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt && mkdir -p /tmp/combah_data
-COPY . /app
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 COMBAH_DATA_DIR=/tmp/combah_data COMBAH_DEMO=1 COMBAH_SECURE_COOKIES=0 PORT=7860 HOME=/home/user PATH=/home/user/.local/bin:$PATH
+WORKDIR /home/user/app
+COPY requirements.txt /home/user/app/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt && mkdir -p /tmp/combah_data && chmod 777 /tmp/combah_data
+COPY . /home/user/app
 EXPOSE 7860
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860", "--proxy-headers", "--forwarded-allow-ips", "*"]
+
