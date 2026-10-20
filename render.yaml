@@ -10,7 +10,7 @@ services:
       - key: PYTHON_VERSION
         value: 3.12.0
       - key: COMBAH_DEMO
-        value: "0"
+        value: "1"
       - key: COMBAH_SECURE_COOKIES
         value: "1"
       - key: COMBAH_DATA_DIR
